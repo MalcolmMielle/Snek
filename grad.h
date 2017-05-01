@@ -106,32 +106,32 @@ double grad(float x_toward, float y_toward, float z_toward, float* theta_a_out, 
     // Serial.println(gradient_c);
     // Serial.println(gradient_d);
 
-    Serial.println("START");
+    // Serial.println("START");
 
-    while (dist > 10 && max_iter < 100)
+    while (dist > 0.5 && max_iter < 100)
     {
         max_iter++;
         float x2, y2, z2;
         getPose(theta_a, theta_b, theta_c, theta_d, &x2, &y2, &z2);
 
-        Serial.print("Now : "); 
-        Serial.print(theta_a);
-        Serial.print(" ");
-        Serial.print(theta_b);
-        Serial.print(" ");
-        Serial.print(theta_c);
-        Serial.print(" ");
-        Serial.println(theta_d);
-        Serial.print("gives : "); 
-        Serial.print(x2);
-        Serial.print(" ");
-        Serial.print(y2);
-        Serial.print(" ");
-        Serial.println(z2);
-        Serial.print("dist ");
-        Serial.println(dist);
+        // Serial.print("Now : "); 
+        // Serial.print(theta_a);
+        // Serial.print(" ");
+        // Serial.print(theta_b);
+        // Serial.print(" ");
+        // Serial.print(theta_c);
+        // Serial.print(" ");
+        // Serial.println(theta_d);
+        // Serial.print("gives : "); 
+        // Serial.print(x2);
+        // Serial.print(" ");
+        // Serial.print(y2);
+        // Serial.print(" ");
+        // Serial.println(z2);
+        // Serial.print("dist ");
+        // Serial.println(dist);
 
-        calc_DistancePRINT(theta_a, theta_b, theta_c, theta_d, x_toward, y_toward, z_toward);
+        // calc_DistancePRINT(theta_a, theta_b, theta_c, theta_d, x_toward, y_toward, z_toward);
 
         gradient_a = calc_Distance(theta_a + step, theta_b, theta_c, theta_d, x_toward, y_toward, z_toward) - calc_Distance(theta_a - step, theta_b, theta_c, theta_d, x_toward, y_toward, z_toward);   
 
