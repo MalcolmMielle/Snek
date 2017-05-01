@@ -45,13 +45,13 @@ void curver(){
     int pos_body = curve_up(pos, 40, 140);
 
     // in steps of 1 degree
-    move(pos, pos_neck, pos_body, 90);
+    move(0, pos_neck, 90, pos_body);
   }
   for (pos = 140; pos >= 40; pos -= 1) { // goes from 180 degrees to 0 degrees
     int pos_neck = curve_down(pos, 20, 40);
     int pos_body = curve_down(pos, 40, 40);
     
-    move(pos, pos_neck, pos_body, 90);                   // waits 15ms for the servo to reach the position
+    move(0, pos_neck, 90, pos_body);
   }
 }
 
@@ -145,14 +145,24 @@ void loop() {
   // Serial.println("HERE");
   // Serial.println(angleToServo(-0.59));
 
-  moveToPose(0, 240, 0);
-  delay(1000);
-  moveToPose(0, -240, 0);
-  delay(1000);
-  moveToPose(100, 0, 100);
-  delay(1000);
-  moveToPose(100, 0, -100);
-  delay(1000);
+// BUG
+  // moveToPose(150, 100, 0);
+  // delay(1000);
+  // moveToPose(150, -100, 0);
+  // delay(1000);
+
+curver();
+
+
+  // delay(1000);
+  // moveToPose(0, -240, 0);
+  // delay(1000);
+  // moveToPose(100, 0, 100);
+  // delay(1000);
+  // moveToPose(100, 0, -100);
+  // delay(1000);
+
+  // move(0, 90, 90, 90);
 
 
 }
