@@ -64,7 +64,7 @@ void getPose(float A[][N], float* x, float* y, float* z){
     *z = A_temp[2];    
 }
 
-getPose(float t1, float t2, float t3, float tf, float* x, float* y, float *z){
+void getPose(float t1, float t2, float t3, float tf, float* x, float* y, float *z){
     float A_first[N][N];
     float A_second[N][N];
     float A_third[N][N];

@@ -37,6 +37,7 @@ int curve(int pos, int shift, int max_in, int min_in){
     }
 
   }
+  return pos_servo2;
 }
 
 int curve_up(int pos, int shift, int max_in){
@@ -84,7 +85,7 @@ void moveFull(int pos, int pos_servo2, int pos_vservo3, int pos_servo4, int pos_
   vservo5.write(pos_vservo5);
   hservo6.write(pos_hservo6);
   vservo7.write(pos_vservo7);
-  delay(10);
+  delay(1);
 }
 
 void curver(){
@@ -103,20 +104,28 @@ void curver(){
   }
 }
 
-void curverFull(int shift, int max_in, int min_in){
+void curverFull(int shift, int steps, int max_in, int min_in){
   int pos = 0;
   int pos_vservo1 = -1;
   do{
     pos_vservo1 = pos;
-    pos = pos + 1;
+    pos = pos + steps;
     int pos_vservo1 = curve(pos,   shift, max_in, min_in);
     int pos_vservo3 = curve(pos, 2*shift, max_in, min_in);
     int pos_vservo5 = curve(pos, 3*shift, max_in, min_in);
     int pos_vservo7 = curve(pos, 4*shift, max_in, min_in);
 
-    // Serial.println("Pisition");
-    // Serial.println(pos);
-    // Serial.println(pos_vservo1);
+     Serial.println("Pisition");
+     Serial.println(pos);
+     Serial.println(pos_vservo1);
+    //The second one is inverted
+    int middle = (max_in + min_in)/2;
+    if(pos_vservo3 < middle){
+      pos_vservo3 = middle + (middle - pos_vservo3); 
+    }
+    else{
+      pos_vservo3 = middle - (pos_vservo3 - middle);
+    }
     
     moveFull(pos_vservo1, 90, pos_vservo3, 90, pos_vservo5, 90, pos_vservo7);
     // Serial.println(pos_vservo1);
@@ -250,9 +259,9 @@ void loop() {
 int dist = sonar.ping_cm();
 Serial.print("dist ");
 Serial.println(dist);
-if(dist < 20 && dist > 10){
-  curverFull(40, 120, 20);
-}
+//if(dist < 20 && dist > 10){
+  curverFull(20, 2, 120, 60);
+//}
 // moveFull(90, 90, 90, 90, 90, 90, 90);
 
 
